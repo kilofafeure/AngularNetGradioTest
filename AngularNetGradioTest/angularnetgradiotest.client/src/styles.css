@@ -1,1 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary: #5e7e66;
+  --primary-dark: #2c4c3b;
+  --primary-hover: #3a6249;
+  --secondary: #f8e16c;
+  --secondary-dark: #f5d742;
+  --secondary-ligth: #edda78;
+  --white: #fff;
+  --warning: #ff6b6b;
+
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+mat-card {
+  max-width: 400px;
+  margin: 2em auto;
+  text-align: center;
+}
+
+mat-form-field {
+  display: block;
+}
+
+.card-title {
+  color: #646464;
+}
+
+
