@@ -7,4 +7,12 @@
     <!-- Folder where production build objects will be placed -->
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\angularnetgradiotest.client\browser\</BuildOutputFolder>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\app\directives\" />
+    <Folder Include="src\app\core\" />
+    <Folder Include="src\app\shared\" />
+    <Folder Include="src\app\services\" />
+    <Folder Include="src\app\pages\" />
+    <Folder Include="src\assets\" />
+  </ItemGroup>
 </Project>
