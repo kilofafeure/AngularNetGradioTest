@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , OnDestroy} from '@angular/core';
 import { WeatherForecastInt } from '../../model/interfaces/weatherforecast.interface';
 import { WeatherForecastService } from '../../services/weatherforecast.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-weaterforecast',
@@ -9,8 +10,9 @@ import { WeatherForecastService } from '../../services/weatherforecast.service';
   standalone: true,
 })
 
-export class WeatherForecast implements OnInit {
+export class WeatherForecast implements OnInit, OnDestroy {
   public forecasts: WeatherForecastInt[] = [];
+  private getWFCSubscription: Subscription | undefined;
 
   constructor(private apiService: WeatherForecastService) { }
 
@@ -18,14 +20,20 @@ export class WeatherForecast implements OnInit {
     this.getForecasts();
   }
 
+  ngOnDestroy() {
+    if (this.getWFCSubscription) {
+      this.getWFCSubscription.unsubscribe();
+    }
+  }
+
   getForecasts() {
-    this.apiService.getForecasts().subscribe({
-      next: (response) => {
-        this.forecasts = response;
-      },
-      error: (err) => {
-        console.error('Error fetching data:', err);
-      }
-    });
+    this.getWFCSubscription = this.apiService.getForecasts().subscribe({
+                                              next: (response) => {
+                                                this.forecasts = response;
+                                              },
+                                              error: (err) => {
+                                                console.error('Error fetching data:', err);
+                                              }
+                                            });
   }
 }

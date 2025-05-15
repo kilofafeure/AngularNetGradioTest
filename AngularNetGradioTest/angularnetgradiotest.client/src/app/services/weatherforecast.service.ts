@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { WeatherForecastInt } from '../model/interfaces/weatherforecast.interface'
 
 @Injectable({
@@ -11,6 +11,11 @@ export class WeatherForecastService {
   constructor(private http: HttpClient) { }
 
   getForecasts(): Observable<WeatherForecastInt[]> {
-    return this.http.get<WeatherForecastInt[]>('/weatherforecast');
+    return this.http.get<WeatherForecastInt[]>('/weatherforecast').pipe(
+      catchError(error => {
+        console.error('Error occurred:', error);
+        return throwError(() => error);
+      })
+    );
   }
 }
