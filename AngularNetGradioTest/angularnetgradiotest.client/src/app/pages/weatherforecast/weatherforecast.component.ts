@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { WeatherForecastInt } from '../../model/interfaces/weatherforecast.interface'
+import { WeatherForecastInt } from '../../model/interfaces/weatherforecast.interface';
+import { WeatherForecastService } from '../../services/weatherforecast.service';
 
 @Component({
   selector: 'app-weaterforecast',
@@ -12,22 +12,20 @@ import { WeatherForecastInt } from '../../model/interfaces/weatherforecast.inter
 export class WeatherForecast implements OnInit {
   public forecasts: WeatherForecastInt[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private apiService: WeatherForecastService) { }
 
   ngOnInit() {
     this.getForecasts();
   }
 
   getForecasts() {
-    this.http.get<WeatherForecastInt[]>('/weatherforecast').subscribe(
-      (result) => {
-        this.forecasts = result;
+    this.apiService.getForecasts().subscribe({
+      next: (response) => {
+        this.forecasts = response;
       },
-      (error) => {
-        console.error(error);
+      error: (err) => {
+        console.error('Error fetching data:', err);
       }
-    );
+    });
   }
-
-  title = 'angularnetgradiotest.client';
 }
