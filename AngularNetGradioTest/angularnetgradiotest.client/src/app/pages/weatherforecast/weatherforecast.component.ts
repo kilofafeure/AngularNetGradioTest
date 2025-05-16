@@ -27,13 +27,14 @@ export class WeatherForecast implements OnInit, OnDestroy {
   }
 
   getForecasts() {
-    this.getWFCSubscription = this.apiService.getForecasts().subscribe({
-                                              next: (response) => {
-                                                this.forecasts = response;
-                                              },
-                                              error: (err) => {
-                                                console.error('Error fetching data:', err);
-                                              }
-                                            });
+    this.getWFCSubscription = this.apiService.getForecasts()
+      .subscribe({
+        next: (response) => {
+          this.forecasts = response;
+        },
+        error: (err) => {
+          console.error('Error fetching data:', err);
+        }
+      });
   }
 }

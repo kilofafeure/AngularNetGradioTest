@@ -1,19 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { Observable, tap, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  login(this: any, data: any) {
-    return this.httpClient.post(`${this.baseUrl}/login`, data)
-      .pipe(tap((result) => {
-        localStorage.setItem('authUser', JSON.stringify(result));
-      }));
+  login(this: any, data: any): Observable<any>  {
+    console.log('******************** login');
+    console.log('data: ', data);
+    return this.httpClient.post(`/login/login`, data)
+      .pipe(
+        tap((result) => {
+          console.log('AuthService - login - result: ', result);
+          localStorage.setItem('authUser', JSON.stringify(result));
+          return result;
+        }),
+        catchError(error => {
+          console.error('Error occurred:', error);
+          return throwError(() => error);
+        })
+      );
   }
 
   logout() {
@@ -21,30 +31,6 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return localStorage.getItem('authUser') !== null;
+    return localStorage.getItem('authUser') !== null && localStorage.getItem('authUser') !== '';
   };
 }
-
-
-
-//import { Injectable } from '@angular/core';
-//import { HttpClient } from '@angular/common/http';
-//import { Observable, catchError, throwError } from 'rxjs';
-
-//@Injectable({
-//  providedIn: 'root'
-//})
-
-//export class AuthService {
-
-//  constructor(private http: HttpClient) { }
-
-//  login(user: string, password: string): Observable<boolean> {
-//    return this.http.get<boolean>('/weatherforecast').pipe(
-//      catchError(error => {
-//        console.error('Error occurred:', error);
-//        return throwError(() => error);
-//      })
-//    );
-//  }
-//}

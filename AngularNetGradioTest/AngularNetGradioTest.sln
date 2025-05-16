@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularNetGradioTest.Server", "AngularNetGradioTest.Server\AngularNetGradioTest.Server.csproj", "{B9146318-2353-4020-901B-61903A6D96FE}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "angularnetgradiotest.client", "angularnetgradiotest.client\angularnetgradiotest.client.esproj", "{276B9C06-C459-4161-B3BB-713013282F62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularNetGradioTest.Server.Common", "AngularNetGradioTest.Server.Common\AngularNetGradioTest.Server.Common.csproj", "{AD813697-B80E-402A-A93E-81406EF9781E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{276B9C06-C459-4161-B3BB-713013282F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{276B9C06-C459-4161-B3BB-713013282F62}.Release|Any CPU.Build.0 = Release|Any CPU
 		{276B9C06-C459-4161-B3BB-713013282F62}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{AD813697-B80E-402A-A93E-81406EF9781E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD813697-B80E-402A-A93E-81406EF9781E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD813697-B80E-402A-A93E-81406EF9781E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD813697-B80E-402A-A93E-81406EF9781E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

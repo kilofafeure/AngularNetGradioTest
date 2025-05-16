@@ -9,5 +9,5 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent, canActivate: [authGuard] },
   { path: 'weatherforecast', component: WeatherForecast },
-  { path: "**", redirectTo: "/" },
+  { path: "**", redirectTo: "/login" },
 ]
