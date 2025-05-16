@@ -1,23 +1,13 @@
-import type { Routes } from "@angular/router"
+import { Routes } from '@angular/router';
+import { LoginComponent } from './pages/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { authGuard } from './services/auth/auth.guard';
+import { WeatherForecast } from './pages/weatherforecast/weatherforecast.component';
 
 export const routes: Routes = [
-  { path: "", redirectTo: "/", pathMatch: "full" },
-  //{
-  //  path: "inicio",
-  //  loadComponent: () => import("./pages/home/home.component").then((m) => m.HomeComponent)
-  //},
-  //{
-  //  path: "sobre-nosotros",
-  //  loadComponent: () =>
-  //    import("./pages/sobre-nosotros/sobre-nosotros.component").then((m) => m.SobreNosotrosComponent),
-  //},
-  //{
-  //  path: "beneficios",
-  //  loadComponent: () => import("./pages/beneficios/beneficios.component").then((m) => m.BeneficiosComponent),
-  //},
-  //{
-  //  path: "contacto",
-  //  loadComponent: () => import("./pages/contacto/contacto.component").then((m) => m.ContactoComponent),
-  //},
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent, canActivate: [authGuard] },
+  { path: 'weatherforecast', component: WeatherForecast },
   { path: "**", redirectTo: "/" },
 ]
