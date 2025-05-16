@@ -12,7 +12,7 @@ export class AuthService {
   login(this: any, data: any): Observable<any>  {
     console.log('******************** login');
     console.log('data: ', data);
-    return this.httpClient.post(`/login/Login`, data)
+    return this.httpClient.post(`/Login`, data)
       .pipe(
         tap((result) => {
           console.log('AuthService - login - result: ', result);
