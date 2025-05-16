@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AngularNetGradioTest.Server.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class LoginController(ILogger<LoginController> logger) : ControllerBase
     {
@@ -12,7 +12,8 @@ namespace AngularNetGradioTest.Server.Controllers
         [HttpPost(Name = "Login")]
         public LoginModel Login([FromBody] FullLoginModel model)
         {
-            if (ModelState.IsValid && model.Email == "admin@admin.com" && model.Password == "admin" ) { 
+            if (ModelState.IsValid && model.Email == "admin@admin.com" && model.Password == "admin")
+            {
                 return new LoginModel(model.Email);
             }
             return new LoginModel();
