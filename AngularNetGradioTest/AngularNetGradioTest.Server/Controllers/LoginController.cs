@@ -1,4 +1,6 @@
-﻿using AngularNetGradioTest.Server.Common.Models;
+﻿using AngularNetGradioTest.Server.Common.Enums;
+using AngularNetGradioTest.Server.Common.Helpers;
+using AngularNetGradioTest.Server.Common.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AngularNetGradioTest.Server.Controllers
@@ -10,13 +12,13 @@ namespace AngularNetGradioTest.Server.Controllers
         private readonly ILogger<LoginController> _logger = logger;
 
         [HttpPost(Name = "Login")]
-        public LoginModel Login([FromBody] FullLoginModel model)
+        public LoginResponseModel Login([FromBody] LoginModel model)
         {
             if (ModelState.IsValid && model.Email == "admin@admin.com" && model.Password == "admin")
             {
-                return new LoginModel(model.Email);
+                return new LoginResponseModel();
             }
-            return new LoginModel();
+            return new LoginResponseModel(CustomErrorList.LoginNotAllowed, ExtensionMethodHelper.GetEnumDescription(CustomErrorList.LoginNotAllowed));
         }
     }
 }

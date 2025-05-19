@@ -1,5 +1,4 @@
 <div class="login-card">
-
   <div class="card-title">
     <h1>Login</h1>
   </div>
@@ -8,5 +7,9 @@
     <input type="password" formControlName="password" placeholder="Password">
     <button>Submit</button>
   </form>
-
+  @if (showErrorMessage) {
+  <div class="error">
+    {{ errorMessage }}
+  </div>
+  }
 </div>

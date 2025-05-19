@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap, catchError, throwError } from 'rxjs';
+import { Observable, tap, catchError } from 'rxjs';
+import { LoginResponseInt } from '../../model/interfaces/loginResponse.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -9,21 +10,18 @@ import { Observable, tap, catchError, throwError } from 'rxjs';
 export class AuthService {
   constructor(private httpClient: HttpClient) { }
 
-  login(this: any, data: any): Observable<any>  {
-    console.log('******************** login');
-    console.log('data: ', data);
+  login(this: any, data: any): Observable<LoginResponseInt>  {
     return this.httpClient.post(`/Login`, data)
       .pipe(
-        tap((result: any) => {
-          console.log('AuthService - login - result: ', result);
-          if (result.email !== '') {
+        tap((result: LoginResponseInt) => {
+          if (result.errorId == null) {
             localStorage.setItem('authUser', JSON.stringify(result));
-            return result;
           }
+          return result.errorMessage;
         }),
         catchError(error => {
-          console.error('Error occurred:', error);
-          return throwError(() => error);
+          console.log('login - error: ', error);
+          return 'Unknown login error';
         })
       );
   }
