@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AngularNetGradioTest.Server.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WeatherForecastController(ILogger<WeatherForecastController> logger) : ControllerBase
     {
         private static readonly string[] Summaries =

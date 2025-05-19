@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   standalone: true,
 })
 
-export class WeatherForecastX implements OnInit, OnDestroy {
+export class WeatherForecast implements OnInit, OnDestroy {
   public forecasts: WeatherForecastInt[] = [];
   private getWFCSubscription: Subscription | undefined;
 

@@ -9,10 +9,6 @@
   justify-content: center;
 }
 
-.padingtop10 {
-    padding-top: 10px;
-}
-
 .error {
   padding-top: 10px;
   color: var(--warning);

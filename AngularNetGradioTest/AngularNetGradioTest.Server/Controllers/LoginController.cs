@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AngularNetGradioTest.Server.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class LoginController(ILogger<LoginController> logger) : ControllerBase
     {

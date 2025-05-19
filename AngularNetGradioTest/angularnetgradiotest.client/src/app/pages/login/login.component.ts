@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
@@ -19,8 +19,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   protected showErrorMessage: boolean = false;
   protected errorMessage: string = '';
-  protected logged: boolean = false;
-  protected clickedLogged: boolean = false;
 
   protected loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -28,18 +26,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   })
 
   ngOnInit() {
-    this.imLogged(false);
+    if (this.loginSubscription) {
+      this.loginSubscription.unsubscribe();
+    }
+    this.authService.logout();
   }
 
   ngOnDestroy() {
     if (this.loginSubscription) {
       this.loginSubscription.unsubscribe();
     }
-  }
-
-  imLogged(clicked: boolean) {
-    this.logged = this.authService.isLoggedIn();
-    this.clickedLogged = clicked;
   }
 
   onSubmit() {
