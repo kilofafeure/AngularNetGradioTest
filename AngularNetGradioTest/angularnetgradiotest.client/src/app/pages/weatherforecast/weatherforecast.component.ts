@@ -4,13 +4,13 @@ import { WeatherForecastService } from '../../services/weatherforecast.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-weaterforecast',
+  selector: 'app-weatherforecast',
   templateUrl: './weatherforecast.component.html',
   styleUrl: './weatherforecast.component.css',
   standalone: true,
 })
 
-export class WeatherForecast implements OnInit, OnDestroy {
+export class WeatherForecastX implements OnInit, OnDestroy {
   public forecasts: WeatherForecastInt[] = [];
   private getWFCSubscription: Subscription | undefined;
 
