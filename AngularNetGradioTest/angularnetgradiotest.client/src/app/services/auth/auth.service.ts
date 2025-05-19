@@ -14,10 +14,12 @@ export class AuthService {
     console.log('data: ', data);
     return this.httpClient.post(`/Login`, data)
       .pipe(
-        tap((result) => {
+        tap((result: any) => {
           console.log('AuthService - login - result: ', result);
-          localStorage.setItem('authUser', JSON.stringify(result));
-          return result;
+          if (result.email !== '') {
+            localStorage.setItem('authUser', JSON.stringify(result));
+            return result;
+          }
         }),
         catchError(error => {
           console.error('Error occurred:', error);
