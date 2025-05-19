@@ -1,13 +1,24 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
-import { LogoutComponent } from './components/logout/logout.component';
 import { authGuard } from './services/auth/auth.guard';
-import { WeatherForecast } from './pages/weatherforecast/weatherforecast.component';
+import { CommonModule } from '@angular/common';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent, canActivate: [authGuard] },
-  { path: 'weatherforecast', component: WeatherForecast, canActivate: [authGuard] },
-  { path: "**", redirectTo: "/login" },
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/login/login.component').then(c => c.LoginComponent)
+  },
+  {
+    path: 'weatherforecast',
+    canActivate: [authGuard],
+    loadComponent: () => import('./pages/weatherforecast/weatherforecast.component').then(c => c.WeatherForecast)
+  },
+  {
+    path: "**",
+    redirectTo: "/login"
+  },
 ]
