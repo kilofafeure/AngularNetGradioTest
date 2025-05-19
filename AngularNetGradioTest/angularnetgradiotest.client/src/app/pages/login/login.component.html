@@ -7,6 +7,11 @@
     <input type="password" formControlName="password" placeholder="Password">
     <button>Submit</button>
   </form>
+  <div class="padingtop10" >
+    <button (click)="imLogged(true)">I'm logged??</button>
+    <div>logged: {{ logged }}</div>
+    <div>clickedLogged: {{ clickedLogged }}</div>
+  </div>
   @if (showErrorMessage) {
   <div class="error">
     {{ errorMessage }}

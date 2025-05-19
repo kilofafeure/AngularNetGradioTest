@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-/*import { LoginComponent } from '../app/pages/login/login.component';*/
 import { RouterModule } from '@angular/router';
 
 @Component({

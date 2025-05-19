@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, OnDestroy } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   protected showErrorMessage: boolean = false;
   protected errorMessage: string = '';
+  protected logged: boolean = false;
+  protected clickedLogged: boolean = false;
 
   protected loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -26,15 +28,18 @@ export class LoginComponent implements OnInit, OnDestroy {
   })
 
   ngOnInit() {
-    if (this.authService.isLoggedIn()) {
-      this.authService.logout();
-    }
+    this.imLogged(false);
   }
 
   ngOnDestroy() {
     if (this.loginSubscription) {
       this.loginSubscription.unsubscribe();
     }
+  }
+
+  imLogged(clicked: boolean) {
+    this.logged = this.authService.isLoggedIn();
+    this.clickedLogged = clicked;
   }
 
   onSubmit() {
@@ -46,19 +51,21 @@ export class LoginComponent implements OnInit, OnDestroy {
             if (this.authService.isLoggedIn()) {
               this.router.navigate(['/weatherforecast']);
             }
-            else {
-              this.errorMessage = response.errorMessage;
-              this.showErrorMessage = true;
-            }
+            this.showError(response.errorMessage);
           },
           error: (err) => {
             console.error('login - onSubmit() error - Error fetching data:', err);
+            this.showError('Unknown error');
           }
         });
     }
     else {
-      this.errorMessage = 'Invalid form';
-      this.showErrorMessage = true;
+      this.showError('Invalid form');
     }
+  }
+
+  private showError(errorMessage: string) {
+    this.errorMessage = errorMessage;
+    this.showErrorMessage = true;
   }
 }

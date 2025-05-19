@@ -31,6 +31,7 @@ export class AuthService {
   }
 
   isLoggedIn() {
+    console.log('************* isLoggedIn');
     return localStorage.getItem('authUser') !== null && localStorage.getItem('authUser') !== '';
   };
 }

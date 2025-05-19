@@ -18,6 +18,10 @@
   --warning: #f56a6a;
 }
 
+button {
+    cursor: pointer;
+}
+
 /*:host {
   display: flex;
   flex-direction: column;
