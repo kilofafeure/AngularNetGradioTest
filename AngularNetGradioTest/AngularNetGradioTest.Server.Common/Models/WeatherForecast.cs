@@ -1,4 +1,4 @@
-namespace AngularNetGradioTest.Server
+namespace AngularNetGradioTest.Server.Common.Models
 {
     public class WeatherForecast
     {
