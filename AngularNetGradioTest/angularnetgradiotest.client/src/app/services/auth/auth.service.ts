@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, tap, catchError, throwError } from 'rxjs';
 import { LoginResponseInt } from '../../model/interfaces/loginResponse.interface';
 
@@ -9,6 +10,8 @@ import { LoginResponseInt } from '../../model/interfaces/loginResponse.interface
 
 export class AuthService {
   constructor(private httpClient: HttpClient) { }
+
+  router = inject(Router);
 
   login(this: any, data: any): Observable<LoginResponseInt>  {
     return this.httpClient.post(`/api/Login`, data)
@@ -37,6 +40,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('authUser');
+    this.router.navigate(['/login']);
   }
 
   isLoggedIn() {

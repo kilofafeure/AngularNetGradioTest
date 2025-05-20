@@ -1,35 +1,43 @@
-<div class="weatherforecast-container">
-  <h1 id="tableLabel">Weather forecast</h1>
-  <p>This component demonstrates fetching data from the server.</p>
-  <div *ngIf="(forecasts$ | async) as forecasts">
-    @if (forecasts.length > 0) {
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Temp. (C)</th>
-          <th>Temp. (F)</th>
-          <th>Summary</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (forecast of forecasts; track forecast.date) {
-        <tr>
-          <td>{{ forecast.date }}</td>
-          <td>{{ forecast.temperatureC }}</td>
-          <td>{{ forecast.temperatureF }}</td>
-          <td>{{ forecast.summary }}</td>
-        </tr>
-        }
-      </tbody>
-    </table>
-    }
-    @else {
-    <p>
-      <em>
-        Not items found, try to reload
-      </em>
-    </p>
-    }
+<div class="wf-main-wrapper">
+
+  <header class="wf-header">
+    <span class="wf-title"></span>
+    <button class="wf-logout-btn" (click)="logout()">Logout</button>
+  </header>
+
+  <div class="weatherforecast-container">
+    <h1 id="tableLabel">Weather forecast</h1>
+    <p>This component demonstrates fetching data from the server.</p>
+    <div *ngIf="(forecasts$ | async) as forecasts">
+      @if (forecasts.length > 0) {
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Temp. (C)</th>
+            <th>Temp. (F)</th>
+            <th>Summary</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (forecast of forecasts; track forecast.date) {
+          <tr>
+            <td>{{ forecast.date }}</td>
+            <td>{{ forecast.temperatureC }}</td>
+            <td>{{ forecast.temperatureF }}</td>
+            <td>{{ forecast.summary }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+      }
+      @else {
+      <p>
+        <em>
+          Not items found, try to reload
+        </em>
+      </p>
+      }
+    </div>
   </div>
 </div>

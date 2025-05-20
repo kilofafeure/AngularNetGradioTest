@@ -32,10 +32,4 @@ button:disabled {
     cursor: not-allowed !important;
 }
 
-/*:host {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}*/
-
 

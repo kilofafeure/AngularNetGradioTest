@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
 import { WeatherForecastInt } from '../../model/interfaces/weatherforecast.interface';
 import { WeatherForecastService } from '../../services/weatherforecast.service';
-import { Observable, Subscription } from 'rxjs';
-import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-weatherforecast',
@@ -14,9 +15,13 @@ import { CommonModule } from '@angular/common';
 export class WeatherForecast implements OnInit { 
   forecasts$: Observable<WeatherForecastInt[]> | undefined;
 
-  constructor(private apiService: WeatherForecastService) { }
+  constructor(private apiService: WeatherForecastService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.forecasts$ = this.apiService.getForecasts();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }
