@@ -12,13 +12,26 @@ namespace AngularNetGradioTest.Server.Controllers
         private readonly ILogger<LoginController> _logger = logger;
 
         [HttpPost(Name = "Login")]
-        public LoginResponseModel Login([FromBody] LoginModel model)
+        public IActionResult Login([FromBody] LoginModel model)
         {
-            if (ModelState.IsValid && model.Email == "admin@admin.com" && model.Password == "admin")
+            try
             {
-                return new LoginResponseModel();
+                // TODO : NEEEDED VALIDATIONS
+                // TODO : NEEEDED VALIDATIONS
+                if (ModelState.IsValid && model.Email == "admin@admin.com" && model.Password == "admin")
+                {
+                    // TODO : CREATE JWT TOKEN
+                    // TODO : CREATE JWT TOKEN
+                    return Ok(new LoginResponseModel());
+                }
+                return BadRequest(new LoginResponseModel(CustomErrorList.LoginNotAllowed, ExtensionMethodHelper.GetEnumDescription(CustomErrorList.LoginNotAllowed)));
             }
-            return new LoginResponseModel(CustomErrorList.LoginNotAllowed, ExtensionMethodHelper.GetEnumDescription(CustomErrorList.LoginNotAllowed));
+            catch (Exception ex)
+            {
+                // TODO : IMPLEMENT LOGS
+                // TODO : IMPLEMENT LOGS
+                return BadRequest(new LoginResponseModel(CustomErrorList.UnknownError, ExceptionHelper.GetFullExceptionMessage(ex)));
+            }
         }
     }
 }
