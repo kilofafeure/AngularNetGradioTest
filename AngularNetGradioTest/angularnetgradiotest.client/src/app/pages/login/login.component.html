@@ -3,9 +3,9 @@
     <h1>Login</h1>
   </div>
   <form class="form-group" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <input name="email" type="email" formControlName="email" placeholder="Email">
-    <input type="password" formControlName="password" placeholder="Password">
-    <button>Submit</button>
+    <input required name="email" type="email" formControlName="email" placeholder="Email">
+    <input required type="password" formControlName="password" placeholder="Password">
+    <button [disabled]="!loginForm.valid">Submit</button>
   </form>
   @if (showErrorMessage) {
   <div class="error">
