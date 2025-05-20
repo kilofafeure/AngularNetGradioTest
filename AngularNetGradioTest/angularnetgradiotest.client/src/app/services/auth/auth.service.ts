@@ -21,7 +21,7 @@ export class AuthService {
         }),
         catchError(error => {
           console.log('login - error: ', error);
-          return throwError(() => new Error('ups something happened'));
+          return throwError(() => new Error(error.error));
         })
       );
   }
