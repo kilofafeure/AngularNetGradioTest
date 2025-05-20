@@ -14,12 +14,22 @@
   --secondary: #f8e16c;
   --secondary-dark: #f5d742;
   --secondary-ligth: #edda78;
+  --background: #c4c6cf;
   --white: #fff;
   --warning: #f56a6a;
 }
 
+
+body {
+  background: var(--background);
+}
+
 button {
     cursor: pointer;
+}
+
+button .disabled {
+    cursor: not-allowed;
 }
 
 /*:host {

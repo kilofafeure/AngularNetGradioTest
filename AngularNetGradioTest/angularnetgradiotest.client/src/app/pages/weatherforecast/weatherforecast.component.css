@@ -1,2 +1,66 @@
-body {
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.weatherforecast-container {
+  max-width: 1200px;
+  width: 100%;
+  padding: 2rem;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(44, 76, 59, 0.07);
+}
+
+h1#tableLabel {
+  color: var(--primary-dark);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+p {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(44, 76, 59, 0.06);
+}
+
+thead tr {
+  background: var(--primary-dark);
+  color: var(--secondary);
+}
+
+th, td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--secondary-ligth);
+}
+
+tbody tr:nth-child(odd) {
+  background: var(--white);
+}
+
+th {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+em {
+  color: var(--warning);
+  font-style: normal;
+  font-weight: 500;
 }
