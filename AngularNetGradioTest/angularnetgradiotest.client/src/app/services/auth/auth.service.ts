@@ -20,8 +20,17 @@ export class AuthService {
           return result;
         }),
         catchError(error => {
-          console.log('login - error: ', error);
-          return throwError(() => new Error(error.error));
+          let errorMsg = 'Unknown authservice.login error';
+          if (error.error && error.error.errorMessage) {
+            errorMsg = error.error.errorMessage;
+          }
+          else if (error.error) {
+            errorMsg = JSON.stringify(error.error);
+          }
+          else {
+            errorMsg = JSON.stringify(error);
+          }
+          return throwError(() => new Error(errorMsg));
         })
       );
   }

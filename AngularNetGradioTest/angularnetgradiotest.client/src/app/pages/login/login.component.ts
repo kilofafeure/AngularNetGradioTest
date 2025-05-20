@@ -45,14 +45,13 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.loginSubscription = this.authService.login(this.loginForm.value)
         .subscribe({
           next: (response: LoginResponseInt) => {
-            if (this.authService.isLoggedIn()) {
+            if (response.errorId == null && this.authService.isLoggedIn()) {
               this.router.navigate(['/weatherforecast']);
             }
             this.showError(response.errorMessage);
           },
-          error: (err: LoginResponseInt) => {
-            console.error('login - onSubmit() error - Error fetching data:', err);
-            this.showError('Unknown error');
+          error: (err) => {
+            this.showError(err.message);
           }
         });
     }
