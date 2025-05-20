@@ -21,7 +21,7 @@ namespace AngularNetGradioTest.Server.Controllers
         {
             try
             {
-                IEnumerable<WeatherForecast> items = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+                IEnumerable<WeatherForecastModel> items = Enumerable.Range(1, 5).Select(index => new WeatherForecastModel
                 {
                     Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
                     TemperatureC = Random.Shared.Next(-20, 55),
@@ -34,7 +34,7 @@ namespace AngularNetGradioTest.Server.Controllers
             {
                 // TODO : IMPLEMENT LOGS
                 // TODO : IMPLEMENT LOGS
-                return BadRequest(new LoginResponseModel(CustomErrorList.UnknownError, ExceptionHelper.GetFullExceptionMessage(ex)));
+                return BadRequest(new ErrorResponseModel(CustomErrorList.UnknownError, ExceptionHelper.GetFullExceptionMessage(ex)));
             }
         }
     }

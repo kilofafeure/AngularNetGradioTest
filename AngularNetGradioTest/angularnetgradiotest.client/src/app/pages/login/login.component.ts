@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { Subscription } from 'rxjs';
+import { LoginResponseInt } from '../../model/interfaces/loginResponse.interface';
 
 @Component({
   selector: 'app-login',
@@ -43,13 +44,13 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.showErrorMessage = false;
       this.loginSubscription = this.authService.login(this.loginForm.value)
         .subscribe({
-          next: (response) => {
+          next: (response: LoginResponseInt) => {
             if (this.authService.isLoggedIn()) {
               this.router.navigate(['/weatherforecast']);
             }
             this.showError(response.errorMessage);
           },
-          error: (err) => {
+          error: (err: LoginResponseInt) => {
             console.error('login - onSubmit() error - Error fetching data:', err);
             this.showError('Unknown error');
           }

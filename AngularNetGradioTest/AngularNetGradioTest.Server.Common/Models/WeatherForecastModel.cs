@@ -1,6 +1,6 @@
 namespace AngularNetGradioTest.Server.Common.Models
 {
-    public class WeatherForecast
+    public class WeatherForecastModel
     {
         public DateOnly Date { get; set; }
 

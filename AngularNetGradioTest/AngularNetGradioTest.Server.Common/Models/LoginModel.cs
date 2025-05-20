@@ -12,8 +12,10 @@ namespace AngularNetGradioTest.Server.Common.Models
         public string Email { get; set; } = string.Empty;
     }
 
-    public class LoginResponseModel(CustomErrorList? errorId = null, string errorMessage = "")
+    public class LoginResponseModel(string email, CustomErrorList? errorId = null, string errorMessage = "")
     {
+        [JsonPropertyName("email")]
+        public string Email { get; set; } = email;
         [JsonPropertyName("errorId")]
         public CustomErrorList? ErrorId { get; set; } = errorId;
         [JsonPropertyName("errorMessage")]

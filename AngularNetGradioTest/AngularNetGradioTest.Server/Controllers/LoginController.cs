@@ -22,15 +22,15 @@ namespace AngularNetGradioTest.Server.Controllers
                 {
                     // TODO : CREATE JWT TOKEN
                     // TODO : CREATE JWT TOKEN
-                    return Ok(new LoginResponseModel());
+                    return Ok(new LoginResponseModel(model.Email));
                 }
-                return BadRequest(new LoginResponseModel(CustomErrorList.LoginNotAllowed, ExtensionMethodHelper.GetEnumDescription(CustomErrorList.LoginNotAllowed)));
+                return BadRequest(new LoginResponseModel(model.Email, CustomErrorList.LoginNotAllowed, ExtensionMethodHelper.GetEnumDescription(CustomErrorList.LoginNotAllowed)));
             }
             catch (Exception ex)
             {
                 // TODO : IMPLEMENT LOGS
                 // TODO : IMPLEMENT LOGS
-                return BadRequest(new LoginResponseModel(CustomErrorList.UnknownError, ExceptionHelper.GetFullExceptionMessage(ex)));
+                return BadRequest(new LoginResponseModel(model.Email, CustomErrorList.UnknownError, ExceptionHelper.GetFullExceptionMessage(ex)));
             }
         }
     }
