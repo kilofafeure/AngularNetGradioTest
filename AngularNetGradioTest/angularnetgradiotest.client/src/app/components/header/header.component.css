@@ -19,12 +19,6 @@
   margin: 0 auto;
 }
 
-.header-container {
-  display: flex;
-  justify-content: space-around;
-  margin: 0 auto;
-}
-
 /* MENÚ */
 .main-nav {
   display: flex;

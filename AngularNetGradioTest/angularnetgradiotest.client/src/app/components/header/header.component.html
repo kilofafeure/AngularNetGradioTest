@@ -1,19 +1,16 @@
-<header class="header">
-  <div class="header-container">
-    <nav class="main-nav">
-      <ul class="nav-list">
-        @for (item of menuItems; track item.path) {
-        <li class="nav-item">
-          <a [routerLink]="item.path"
-             routerLinkActive="active"
-             [routerLinkActiveOptions]="{exact: item.path === '/inicio'}"
-          >
-            {{ item.label }}
-          </a>
-        </li>
-        }
-      </ul>
-    </nav>
-    <button class="header-logout-btn" (click)="logout()">Logout</button>
-  </div>
-</header>
+<div class="header">
+  <nav class="main-nav">
+    <ul class="nav-list">
+      @for (item of menuItems; track item.path) {
+      <li class="nav-item">
+        <a [routerLink]="item.path"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: item.path === '/inicio'}">
+          {{ item.label }}
+        </a>
+      </li>
+      }
+    </ul>
+  </nav>
+  <button class="header-logout-btn">Logout</button>
+</div>
