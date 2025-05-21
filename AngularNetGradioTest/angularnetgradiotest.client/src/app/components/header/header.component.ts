@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   isLoggedIn$: Observable<boolean> = new Observable<boolean>();
   menuItems = [
     { path: "/weatherforecast", label: "Weather F." },
+    { path: "/aiintegration", label: "AI Integration" },
   ]
 
   protected logged: boolean = false;

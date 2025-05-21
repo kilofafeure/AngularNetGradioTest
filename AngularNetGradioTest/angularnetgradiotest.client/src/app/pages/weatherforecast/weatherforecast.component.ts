@@ -12,7 +12,7 @@ import { AuthService } from '../../services/auth/auth.service';
   standalone: true,
   imports: [ CommonModule ]
 })
-export class WeatherForecast implements OnInit { 
+export class WeatherForecastComponent implements OnInit { 
   forecasts$: Observable<WeatherForecastInt[]> | undefined;
 
   constructor(private apiService: WeatherForecastService, private authService: AuthService) { }

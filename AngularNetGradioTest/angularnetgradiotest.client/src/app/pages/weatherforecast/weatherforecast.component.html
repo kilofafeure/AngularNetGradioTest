@@ -1,4 +1,4 @@
-<div class="weatherforecast-container">
+<div class="page-container">
   <h1 id="tableLabel">Weather forecast</h1>
   <p>This component demonstrates fetching data from the server.</p>
   <div *ngIf="(forecasts$ | async) as forecasts">
@@ -25,9 +25,9 @@
     </table>
     }
     @else {
-    <p>
+    <p class="warning-color">
       <em>
-        Not items found, try to reload
+        No items found
       </em>
     </p>
     }

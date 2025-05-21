@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './services/auth/auth.guard';
-import { CommonModule } from '@angular/common';
 
 export const routes: Routes = [
   {
@@ -15,7 +14,12 @@ export const routes: Routes = [
   {
     path: 'weatherforecast',
     canActivate: [authGuard],
-    loadComponent: () => import('./pages/weatherforecast/weatherforecast.component').then(c => c.WeatherForecast)
+    loadComponent: () => import('./pages/weatherforecast/weatherforecast.component').then(c => c.WeatherForecastComponent)
+  },
+  {
+    path: 'aiintegration',
+    canActivate: [authGuard],
+    loadComponent: () => import('./pages/ai-integration/ai-integration.component').then(c => c.AIIntegrationComponent)
   },
   {
     path: "**",

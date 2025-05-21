@@ -38,4 +38,61 @@ button:disabled {
     cursor: not-allowed !important;
 }
 
+h1#tableLabel {
+  color: var(--primary-dark);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(44, 76, 59, 0.06);
+}
+
+thead tr {
+  background: var(--primary-dark);
+  color: var(--secondary);
+}
+
+th, td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--secondary-ligth);
+}
+
+tbody tr:nth-child(odd) {
+  background: var(--white);
+}
+
+th {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+em {
+  font-style: normal;
+  font-weight: 500;
+}
+
+p {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+}
+
+.page-container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.warning-color {
+  color: var(--warning);
+}
 
