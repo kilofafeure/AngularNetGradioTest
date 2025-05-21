@@ -13,7 +13,6 @@ export class WeatherForecastService {
   getForecasts(): Observable<WeatherForecastInt[]> {
     return this.http.get<WeatherForecastInt[]>('/api/weatherforecast').pipe(
       catchError(error => {
-        console.error('Error occurred:', error);
         return throwError(() => error);
       })
     );

@@ -20,7 +20,6 @@ export class AuthService {
       .pipe(
         tap((result: LoginResponseInt) => {
           if (result.errorId == null) {
-            localStorage.setItem('authUser', JSON.stringify(result));
             this.loggedIn.next(true);
           }
           return result;
@@ -42,8 +41,6 @@ export class AuthService {
   }
 
   logout() {
-    console.log('auth.service logout');
-    localStorage.removeItem('authUser');
     this.loggedIn.next(false);
     this.router.navigate(['/login']);
   }
@@ -51,8 +48,4 @@ export class AuthService {
   get isLoggedIn() {
     return this.loggedIn.asObservable();
   };
-}
-
-function of(error: any): any {
-    throw new Error('Function not implemented.');
 }
