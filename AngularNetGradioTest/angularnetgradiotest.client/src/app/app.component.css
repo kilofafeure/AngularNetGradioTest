@@ -1,21 +1,21 @@
 :host {
-  max-width: 1200px;
-  padding: 2rem;
-/*  text-align: center;*/
+  display: block;
+  width: 100%;
 }
 
 .app-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra horizontalmente */
+  align-items: center;
   min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  margin-top: 10px;
 }
 
 .main-content {
   flex: 1;
-/*  padding-top: 80px;
-  padding-bottom: 20px;*/
-  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
 }
