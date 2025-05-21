@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, tap, catchError, throwError } from 'rxjs';
+import { Observable, tap, catchError, throwError, BehaviorSubject } from 'rxjs';
 import { LoginResponseInt } from '../../model/interfaces/loginResponse.interface';
 
 @Injectable({
@@ -9,6 +9,8 @@ import { LoginResponseInt } from '../../model/interfaces/loginResponse.interface
 })
 
 export class AuthService {
+  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   constructor(private httpClient: HttpClient) { }
 
   router = inject(Router);
@@ -19,6 +21,7 @@ export class AuthService {
         tap((result: LoginResponseInt) => {
           if (result.errorId == null) {
             localStorage.setItem('authUser', JSON.stringify(result));
+            this.loggedIn.next(true);
           }
           return result;
         }),
@@ -39,12 +42,14 @@ export class AuthService {
   }
 
   logout() {
+    console.log('auth.service logout');
     localStorage.removeItem('authUser');
+    this.loggedIn.next(false);
     this.router.navigate(['/login']);
   }
 
-  isLoggedIn() {
-    return localStorage.getItem('authUser') !== null && localStorage.getItem('authUser') !== '';
+  get isLoggedIn() {
+    return this.loggedIn.asObservable();
   };
 }
 

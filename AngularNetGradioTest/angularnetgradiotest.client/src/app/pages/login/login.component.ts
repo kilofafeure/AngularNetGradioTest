@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.loginSubscription = this.authService.login(this.loginForm.value)
         .subscribe({
           next: (response: LoginResponseInt) => {
-            if (response.errorId == null && this.authService.isLoggedIn()) {
+            if (response.errorId == null) {
               this.router.navigate(['/weatherforecast']);
             }
             this.showError(response.errorMessage);
