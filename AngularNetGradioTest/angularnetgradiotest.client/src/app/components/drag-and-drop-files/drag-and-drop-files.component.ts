@@ -71,8 +71,4 @@ export class DragAndDropFilesComponent {
   clearErrors() {
     this.errors = [];
   }
-
-  removeError(error: string) {
-    this.errors = this.errors.filter(e => e !== error);
-  }
 }
