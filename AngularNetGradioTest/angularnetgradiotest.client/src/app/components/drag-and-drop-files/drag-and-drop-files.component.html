@@ -1,51 +1,63 @@
 <div class="drag-and-drop-container">
   <div class="upload-container"
-       #uploadzone
-       appDropZone
-       onFilesDropped="onFilesDropped($event)"
-       (click)="onClick()">
-    <p class="title">Click or release files to upload them</p>
+       [class.dragover]="isDragOver"
+       (drop)="onDrop($event)"
+       (dragover)="onDragOver($event)"
+       (dragleave)="onDragLeave($event)"
+       (click)="fileInput.click()">
+    <p class="title">Arrastra y suelta archivos aquí</p>
+    <p>o haz clic para seleccionar</p>
+    <input #fileInput
+           type="file"
+           (change)="onFilesSelected($event)"
+           [attr.accept]="accept.join(',')"
+           multiple
+           hidden />
   </div>
 
-  @if (currentFiles.length > 0) {
-  <div>
-    <ul>
-      @for (file of currentFiles; track file.name) {
+  @if (files.length > 0) {
+  <div class="file-upload">
+    <div class="list-header">
+      <span>Ficheros seleccionados</span>
+      <button type="button" class="icon-btn" title="Vaciar listado" (click)="removeFiles()">
+        <!-- Papelera SVG -->
+        <svg class="trash-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M9 3V4H4V6H5V19A2 2 0 0 0 7 21H17A2 2 0 0 0 19 19V6H20V4H15V3H9M7 6H17V19H7V6Z" /></svg>
+      </button>
+    </div>
+    <ul class="file-list">
+      @for (file of files; track file.name) {
       <li>
-        <div class="file-upload">
-          <div>
-            <span class="file-label">
-              {{file.name}}
-              <a title="Delete" (click)="removeFile(file)">
-                DELETE
-              </a>
-            </span>
-          </div>
-        </div>
+        {{ file.name }}
+        <button class="icon-btn" title="Quitar archivo" (click)="removeFile(file)">
+          <!-- Cruz roja SVG -->
+          <svg class="close-icon" viewBox="0 0 24 24"><path fill="#f56a6a" d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7a1 1 0 1 0-1.41 1.41L10.59 12l-4.89 4.89a1 1 0 1 0 1.41 1.41L12 13.41l4.89 4.89a1 1 0 0 0 1.41-1.41L13.41 12l4.89-4.89a1 1 0 0 0 0-1.4z" /></svg>
+        </button>
       </li>
       }
     </ul>
-    <button (click)="removeFiles()">DELETE ALL</button>
   </div>
   }
 
-  @if (hasErrors) {
-  <div class="warning-color-background">
-    <ul>
-      @for (currentError of errorMessages; track currentError) {
+  @if (errors.length > 0) {
+  <div class="file-upload">
+    <div class="list-header">
+      <span>Errores</span>
+      <button type="button" class="icon-btn" title="Vaciar errores" (click)="clearErrors()">
+        <!-- Papelera SVG -->
+        <svg class="trash-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M9 3V4H4V6H5V19A2 2 0 0 0 7 21H17A2 2 0 0 0 19 19V6H20V4H15V3H9M7 6H17V19H7V6Z" /></svg>
+      </button>
+    </div>
+    <ul class="error-list">
+      @for (error of errors; track error) {
       <li>
-        {{currentError}}
+        {{ error }}
+        <button class="icon-btn" title="Quitar error" (click)="removeError(error)">
+          <!-- Cruz roja SVG -->
+          <svg class="close-icon" viewBox="0 0 24 24"><path fill="#f56a6a" d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7a1 1 0 1 0-1.41 1.41L10.59 12l-4.89 4.89a1 1 0 1 0 1.41 1.41L12 13.41l4.89 4.89a1 1 0 0 0 1.41-1.41L13.41 12l4.89-4.89a1 1 0 0 0 0-1.4z" /></svg>
+        </button>
       </li>
       }
     </ul>
-    <button (click)="removeErrors()">REMOVE ERRORS</button>
   </div>
   }
-
-  <input type="file"
-         id="fileUpload"
-         name="fileUpload"
-         accept="{{accept}}"
-         style="display:none;"
-         multiple>
 </div>

@@ -21,7 +21,6 @@ export class AIIntegrationComponent {
         this.files.push($event[i]);
       }
     }
-    console.log('********************* selectedFiles: ', this.files);
   }
 
   sendFilesToPredict() {

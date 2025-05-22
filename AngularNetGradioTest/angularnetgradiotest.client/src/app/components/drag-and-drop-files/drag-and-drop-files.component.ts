@@ -1,126 +1,77 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  //selector: 'drag-and-drop-files',
-  //templateUrl:'./drag-and-drop-files.component.html',
-  //styleUrls: './drag-and-drop-files.component.css',
   selector: 'app-drag-and-drop-files',
   templateUrl: './drag-and-drop-files.component.html',
-  styleUrl: './drag-and-drop-files.component.css',
+  styleUrls: ['./drag-and-drop-files.component.css'],
   standalone: true,
 })
-
 export class DragAndDropFilesComponent {
-  @Input() accept: [string] = ['application/pdf'];
-  @Output() emitFiles = new EventEmitter<Array<File>>();
+  @Input() accept: string[] = ['application/pdf'];
+  @Output() emitFiles = new EventEmitter<File[]>();
 
-  hasErrors: boolean = false;
-  errorMessages: string[] = [];
-  currentFiles: Array<File> = [];
-  disabledDragAndDrop: boolean = false;
+  files: File[] = [];
+  errors: string[] = [];
+  isDragOver = false;
 
-  constructor() { }
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    this.isDragOver = true;
+  }
 
-  onFilesDropped(files: FileList) {
-    console.log('********************* onFilesDropped: files: ', files);
-    if (!this.disabledDragAndDrop) {
-      this.disabledDragAndDrop = true;
-      const currentFileNames = this.getFileNames();
-      for (let i = 0; i < files.length; i++) {
-        const validExtension: boolean = this.accept.includes(files[i].type);
-        const existsFile: boolean = currentFileNames.includes(files[i].name);
+  onDragLeave(event: DragEvent) {
+    event.preventDefault();
+    this.isDragOver = false;
+  }
 
-        if (validExtension && !existsFile) {
-          this.currentFiles.push(files[i]);
-        }
-        else if (!validExtension) {
-          this.hasErrors = true;
-          this.errorMessages.push('Extensión not allowed - ', files[i].name);
-        }
-        else {
-          this.hasErrors = true;
-          this.errorMessages.push('File allready selected - ', files[i].name);
-        }
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    this.isDragOver = false;
+    if (event.dataTransfer?.files) {
+      this.handleFiles(event.dataTransfer.files);
+    }
+  }
+
+  onFilesSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files) {
+      this.handleFiles(input.files);
+      input.value = '';
+    }
+  }
+
+  handleFiles(fileList: FileList) {
+    this.errors = [];
+    const existingNames = this.files.map(f => f.name);
+
+    Array.from(fileList).forEach(file => {
+      if (!this.accept.includes(file.type)) {
+        this.errors.push(`Extensión no permitida: ${file.name}`);
+      } else if (existingNames.includes(file.name)) {
+        this.errors.push(`Archivo ya seleccionado: ${file.name}`);
+      } else {
+        this.files.push(file);
       }
-      this.disabledDragAndDrop = false;
-      this.emitFiles.emit(this.currentFiles);
-    }
-  }
+    });
 
-  onClick() {
-    this.disabledDragAndDrop = true;
-    const fileUpload: HTMLInputElement = document.getElementById('fileUpload') as HTMLInputElement;
-
-    if (fileUpload !== null) {
-      fileUpload.onclick = function () {
-        fileUpload.value = '';
-      };
-      fileUpload.onchange = (event: any) => {
-        this.hasErrors = false;
-        const selectedFiles = event?.target?.files ?? [];
-        if (fileUpload?.files !== null && fileUpload.files.length > 0) {
-          const currentFileNames = this.getFileNames();
-          for (let i = 0; i < selectedFiles.length; i++) {
-            const validExtension: boolean = this.accept.includes(selectedFiles[i].type);
-            const existsFile: boolean = currentFileNames.includes(selectedFiles[i].name);
-            if (validExtension && !existsFile) {
-              this.currentFiles.push(selectedFiles[i]);
-            }
-            else if (!validExtension) {
-              this.hasErrors = true;
-              const errorMes = 'Extensión not allowed - ' + selectedFiles[i].name;
-              if (!this.errorMessages.includes(errorMes)) {
-                this.errorMessages.push(errorMes);
-              }
-            }
-            else {
-              this.hasErrors = true;
-              const errorMes = 'File allready selected - ' + selectedFiles[i].name;
-              if (!this.errorMessages.includes(errorMes)) {
-                this.errorMessages.push(errorMes);
-              }
-            }
-          }
-          this.emitFiles.emit(this.currentFiles);
-        }
-        this.disabledDragAndDrop = false;
-      }
-    };
-
-    fileUpload.onclose = () => {
-      this.disabledDragAndDrop = false;
-    }
-
-    fileUpload.oncancel = () => {
-      this.disabledDragAndDrop = false;
-    }
-
-    fileUpload.click();
-  }
-
-  getFileNames(): string[] {
-    let fileNames: string[] = [];
-    for (let i = 0; i < this.currentFiles.length; i++) {
-      fileNames.push(this.currentFiles[i].name);
-    }
-    return fileNames;
-  }
-
-  removeErrors() {
-    this.hasErrors = false;
-    this.errorMessages = [];
+    this.emitFiles.emit(this.files);
   }
 
   removeFile(file: File) {
-    var index = this.currentFiles.indexOf(file);
-    if (index > -1) {
-      this.currentFiles.splice(index, 1);
-    }
-    this.emitFiles.emit(this.currentFiles);
+    this.files = this.files.filter(f => f !== file);
+    this.emitFiles.emit(this.files);
   }
 
   removeFiles() {
-    this.currentFiles = [];
-    this.emitFiles.emit([]);
+    this.files = [];
+    this.emitFiles.emit(this.files);
+  }
+
+  clearErrors() {
+    this.errors = [];
+  }
+
+  removeError(error: string) {
+    this.errors = this.errors.filter(e => e !== error);
   }
 }
