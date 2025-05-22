@@ -11,6 +11,7 @@
   --white: #fff;
   --black: #000000;
   --warning: #f56a6a;
+  --disabled: #eddfdf;
 }
 
 * {
@@ -43,9 +44,11 @@ button {
     cursor: pointer;
 }
 
-button:disabled {
-    cursor: not-allowed !important;
-}
+  button:disabled,
+  input:disabled {
+    cursor: not-allowed;
+    background-color: var(--disabled);
+  }
 
 h1 {
   color: var(--primary-dark);

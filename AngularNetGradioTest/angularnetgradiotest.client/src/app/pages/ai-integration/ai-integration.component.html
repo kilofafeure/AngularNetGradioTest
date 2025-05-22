@@ -2,7 +2,7 @@
   <h1>AI Integration</h1>
   <p>This component tests AI integration.</p>
   <div>
-    <app-drag-and-drop-files (emitFiles)="selectedFiles($event)"></app-drag-and-drop-files>
+    <app-drag-and-drop-files (emitFiles)="selectedFiles($event)" [isDisabled]="disabledForm"></app-drag-and-drop-files>
   </div>
   @if (showErrorMessage) {
   <div class="error">

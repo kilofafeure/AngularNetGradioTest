@@ -13,7 +13,8 @@ export class AIIntegrationComponent {
   constructor(private aiService: AIService) { }
   files: File[] = [];
   errorMessage: string = '';
-  showErrorMessage: boolean = false
+  showErrorMessage: boolean = false;
+  disabledForm: boolean = false;
 
   selectedFiles($event: Array<File>) {
     for (let i = 0; i < $event.length; i++) {

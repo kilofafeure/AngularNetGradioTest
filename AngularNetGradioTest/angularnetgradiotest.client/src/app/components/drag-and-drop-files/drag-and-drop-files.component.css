@@ -32,6 +32,11 @@
     box-shadow: 0 3px 12px rgba(44, 76, 59, 0.15);
   }
 
+  .upload-container.disabled {
+    cursor: not-allowed;
+    background-color: var(--disabled);
+  }
+
   .upload-container p {
     margin: 0 0 8px 0;
     padding: 0;

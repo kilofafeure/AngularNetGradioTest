@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class DragAndDropFilesComponent {
   @Input() accept: string[] = ['application/pdf'];
+  @Input() isDisabled: boolean = false;
   @Output() emitFiles = new EventEmitter<File[]>();
 
   files: File[] = [];
