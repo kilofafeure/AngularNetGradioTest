@@ -3,10 +3,10 @@
   <p>This component tests AI integration.</p>
 
   <div class="input-area">
-    <textarea [(ngModel)]="textoUsuario"
+    <textarea [(ngModel)]="textoApp"
               placeholder="¿Te puedo ayudar en algo? Puedes preguntarme y/o adjuntar ficheros pdf"
-              class="full-width-textarea"
-              [disabled]="disabledForm">
+              class="full-width-textarea-button"
+              readonly>
     </textarea>
     <button type="button"
             (click)="showDragAndDrop = !showDragAndDrop"
@@ -22,6 +22,19 @@
               stroke-linejoin="round" />
       </svg>
     </button>
+  </div>
+  <div class="input-area">
+    <textarea [(ngModel)]="textoUsuario"
+              placeholder="..."
+              class="full-width-textarea"
+              [disabled]="disabledForm"
+              [readonly]="isLoading">
+    </textarea>
+    @if (isLoading) {
+    <div class="loading-overlay">
+      <span class="spinner"></span>
+    </div>
+    }
   </div>
 
   <div class="button-row">

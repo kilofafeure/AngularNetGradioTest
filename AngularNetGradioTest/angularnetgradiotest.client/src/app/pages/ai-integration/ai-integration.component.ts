@@ -16,7 +16,9 @@ export class AIIntegrationComponent {
   errorMessage: string = '';
   showErrorMessage: boolean = false;
   showDragAndDrop: boolean = false;
-  textoUsuario = '';
+  textoApp: string = '¿Te puedo ayudar en algo? Puedes preguntarme y/o adjuntar ficheros pdf';
+  textoUsuario: string = '';
+  isLoading: boolean = false;
   disabledForm: boolean = false;
 
   abrirDragAndDrop() {
@@ -33,20 +35,17 @@ export class AIIntegrationComponent {
 
   predict() {
     this.disabledForm = true;
-    // Lógica para enviar el texto
-    console.log(this.textoUsuario);
-    this.disabledForm = false;
+    this.isLoading = true;
+    //this.aiService.predict(this.textoUsuario, this.files).subscribe({
+    //  next: (result) => {
+    //  },
+    //  error: (err) => {
+    //  },
+    //  complete: () => {
+    //    this.isLoading = false;
+    //  }
+    //});
   }
-
-  //sendFilesToPredict() {
-  //  if (this.files.length > 0) {
-  //    this.hideError();
-
-  //  }
-  //  else {
-  //    this.showError('Not files selected');
-  //  }
-  //}
 
   private hideError() {
     this.errorMessage = '';
