@@ -1,6 +1,12 @@
 <div class="page-container">
-  AI INTEGRATION COMPONENT<br /><br />
-  AI INTEGRATION COMPONENT<br /><br />
-  AI INTEGRATION COMPONENT<br /><br />
-  AI INTEGRATION COMPONENT<br /><br />
+  <h1>AI Integration</h1>
+  <p>This component tests AI integration.</p>
+  <div>
+    <app-drag-and-drop-files (emitFiles)="selectedFiles($event)"></app-drag-and-drop-files>
+  </div>
+  @if (showErrorMessage) {
+  <div class="error">
+    {{ errorMessage }}
+  </div>
+  }
 </div>

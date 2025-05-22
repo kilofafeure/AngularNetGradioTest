@@ -10,8 +10,6 @@
 
 .error {
   padding-top: 10px;
-  color: var(--warning);
-  font-weight: bold;
 }
 
 .login-card {
@@ -44,7 +42,6 @@
     padding: 8px 15px;
     width: 100%;
   }
-
 
 .card-title h1 {
   font-size: 26px;

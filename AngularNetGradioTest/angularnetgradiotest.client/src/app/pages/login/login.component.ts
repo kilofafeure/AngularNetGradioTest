@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.showErrorMessage = false;
+      this.hideError();
       this.loginSubscription = this.authService.login(this.loginForm.value)
         .subscribe({
           next: (response: LoginResponseInt) => {
@@ -58,6 +58,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     else {
       this.showError('Invalid form');
     }
+  }
+
+  private hideError() {
+    this.errorMessage = '';
+    this.showErrorMessage = false;
   }
 
   private showError(errorMessage: string) {

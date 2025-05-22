@@ -9,6 +9,7 @@
   --secondary-ligth: #edda78;
   --background: #c4c6cf;
   --white: #fff;
+  --black: #000000;
   --warning: #f56a6a;
 }
 
@@ -30,6 +31,14 @@ body {
   background: var(--background);
 }
 
+a {
+  cursor: pointer;
+}
+
+ul li {
+  padding: 0;
+}
+
 button {
     cursor: pointer;
 }
@@ -38,7 +47,7 @@ button:disabled {
     cursor: not-allowed !important;
 }
 
-h1#tableLabel {
+h1 {
   color: var(--primary-dark);
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -92,7 +101,17 @@ p {
   box-sizing: border-box;
 }
 
+.error {
+  color: var(--warning);
+  font-weight: bold;
+}
+
 .warning-color {
   color: var(--warning);
+}
+
+.warning-color-background {
+  background-color: var(--warning);
+  color: var(--black);
 }
 

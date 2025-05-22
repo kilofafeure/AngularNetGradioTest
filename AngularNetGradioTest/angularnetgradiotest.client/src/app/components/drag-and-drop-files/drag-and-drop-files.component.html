@@ -1,0 +1,51 @@
+<div class="drag-and-drop-container">
+  <div class="upload-container"
+       #uploadzone
+       appDropZone
+       onFilesDropped="onFilesDropped($event)"
+       (click)="onClick()">
+    <p class="title">Click or release files to upload them</p>
+  </div>
+
+  @if (currentFiles.length > 0) {
+  <div>
+    <ul>
+      @for (file of currentFiles; track file.name) {
+      <li>
+        <div class="file-upload">
+          <div>
+            <span class="file-label">
+              {{file.name}}
+              <a title="Delete" (click)="removeFile(file)">
+                DELETE
+              </a>
+            </span>
+          </div>
+        </div>
+      </li>
+      }
+    </ul>
+    <button (click)="removeFiles()">DELETE ALL</button>
+  </div>
+  }
+
+  @if (hasErrors) {
+  <div class="warning-color-background">
+    <ul>
+      @for (currentError of errorMessages; track currentError) {
+      <li>
+        {{currentError}}
+      </li>
+      }
+    </ul>
+    <button (click)="removeErrors()">REMOVE ERRORS</button>
+  </div>
+  }
+
+  <input type="file"
+         id="fileUpload"
+         name="fileUpload"
+         accept="{{accept}}"
+         style="display:none;"
+         multiple>
+</div>
