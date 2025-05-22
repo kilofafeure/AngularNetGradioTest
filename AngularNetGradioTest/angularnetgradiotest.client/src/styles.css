@@ -57,7 +57,8 @@ button {
     background: var(--secondary-dark);
     color: var(--primary-hover);
   }
-
+  
+  textarea:disabled,
   button:disabled,
   input:disabled {
     cursor: not-allowed;
@@ -129,13 +130,17 @@ p {
 
   .icon-btn svg {
     vertical-align: middle;
-
   }
 
-.page-container {
-  width: 100%;
-  box-sizing: border-box;
-}
+    .icon-btn svg:disabled {
+      cursor: not-allowed;
+      background: var(--secondary-dark);
+    }
+
+    .page-container {
+      width: 100%;
+      box-sizing: border-box;
+    }
 
 .error {
   color: var(--warning);

@@ -31,20 +31,22 @@ export class AIIntegrationComponent {
     }
   }
 
-  procesarTexto() {
+  predict() {
+    this.disabledForm = true;
     // Lógica para enviar el texto
     console.log(this.textoUsuario);
+    this.disabledForm = false;
   }
 
-  sendFilesToPredict() {
-    if (this.files.length > 0) {
-      this.hideError();
+  //sendFilesToPredict() {
+  //  if (this.files.length > 0) {
+  //    this.hideError();
 
-    }
-    else {
-      this.showError('Not files selected');
-    }
-  }
+  //  }
+  //  else {
+  //    this.showError('Not files selected');
+  //  }
+  //}
 
   private hideError() {
     this.errorMessage = '';

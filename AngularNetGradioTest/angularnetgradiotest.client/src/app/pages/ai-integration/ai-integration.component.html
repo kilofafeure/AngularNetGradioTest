@@ -4,15 +4,15 @@
 
   <div class="input-area">
     <textarea [(ngModel)]="textoUsuario"
-              placeholder="¿Qué desea consultar?"
-              class="full-width-textarea"></textarea>
-  </div>
-
-  <div class="button-row">
-    <button (click)="procesarTexto()">Enviar</button>
-    <button (click)="showDragAndDrop = !showDragAndDrop"
-            class="icon-btn"
-            title="Adjuntar archivos">
+              placeholder="¿Te puedo ayudar en algo? Puedes preguntarme y/o adjuntar ficheros pdf"
+              class="full-width-textarea"
+              [disabled]="disabledForm">
+    </textarea>
+    <button type="button"
+            (click)="showDragAndDrop = !showDragAndDrop"
+            class="icon-btn-absolute"
+            title="Adjuntar archivos"
+            [disabled]="disabledForm">
       <!-- SVG de clip -->
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path d="M17.656 6.343a6 6 0 0 1 0 8.485l-6.364 6.364a4 4 0 1 1-5.657-5.657l8.485-8.485a2 2 0 1 1 2.828 2.828l-8.485 8.485"
@@ -22,6 +22,10 @@
               stroke-linejoin="round" />
       </svg>
     </button>
+  </div>
+
+  <div class="button-row">
+    <button (click)="predict()" [disabled]="disabledForm">Enviar</button>
   </div>
 
   @if (showDragAndDrop) {

@@ -7,23 +7,52 @@
 
 .input-area {
   width: 100%;
+  max-width: 600px;
+  position: relative;
   display: flex;
-  justify-content: center;
+  align-items: center;
 }
 
 .full-width-textarea {
   width: 100%;
-  max-width: 600px;
   min-width: 300px;
   min-height: 100px;
   box-sizing: border-box;
   display: block;
-  margin: 0 auto;
   resize: vertical;
   font-size: 1rem;
-  padding: 12px;
+  padding: 12px 46px 12px 12px; /* Padding right para el botón */
   border-radius: 8px;
   border: 1px solid #ccc;
+  background: #fff;
+  z-index: 1;
+}
+
+.icon-btn-absolute {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 7px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  background: var(--secondary);
+  color: var(--primary-dark);
+}
+
+  .icon-btn-absolute:hover {
+    background: var(--secondary-dark);
+    color: var(--primary-hover);
+  }
+
+.full-width-textarea:disabled,
+.icon-btn-absolute:disabled {
+  cursor: not-allowed;
+  background-color: var(--disabled);
 }
 
 .button-row {
@@ -35,16 +64,8 @@
   margin-top: 8px;
 }
 
-.icon-btn {
-  vertical-align: middle;
-  display: flex;
-  align-items: center;
-}
-
-.drag-and-drop-wrapper {
-  width: 100%;
-  max-width: 600px;
-  margin: 24px auto 0 auto;
+.ai-drag-and-drop {
+  margin-top: 10px;
 }
 
 .error {
@@ -55,8 +76,4 @@
   margin-top: 16px;
   max-width: 600px;
   text-align: center;
-}
-
-.ai-drag-and-drop {
-    margin-top: 10px;
 }
