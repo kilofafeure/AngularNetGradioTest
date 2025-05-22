@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { AIService } from '../../services/ai.service';
 import { DragAndDropFilesComponent } from '../../components/drag-and-drop-files/drag-and-drop-files.component';
 
@@ -7,14 +8,20 @@ import { DragAndDropFilesComponent } from '../../components/drag-and-drop-files/
   templateUrl: './ai-integration.component.html',
   styleUrl: './ai-integration.component.css',
   standalone: true,
-  imports: [ DragAndDropFilesComponent ]
+  imports: [DragAndDropFilesComponent, FormsModule ]
 })
 export class AIIntegrationComponent {
   constructor(private aiService: AIService) { }
   files: File[] = [];
   errorMessage: string = '';
   showErrorMessage: boolean = false;
+  showDragAndDrop: boolean = false;
+  textoUsuario = '';
   disabledForm: boolean = false;
+
+  abrirDragAndDrop() {
+    this.showDragAndDrop = !this.showDragAndDrop;
+  }
 
   selectedFiles($event: Array<File>) {
     for (let i = 0; i < $event.length; i++) {
@@ -22,6 +29,11 @@ export class AIIntegrationComponent {
         this.files.push($event[i]);
       }
     }
+  }
+
+  procesarTexto() {
+    // Lógica para enviar el texto
+    console.log(this.textoUsuario);
   }
 
   sendFilesToPredict() {

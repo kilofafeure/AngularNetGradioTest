@@ -66,21 +66,3 @@
       width: 100%;
     }
 
-
-/* BOTÓN LOGOUT */
-.header-logout-btn {
-  background: var(--secondary);
-  color: var(--primary-dark);
-  border: none;
-  padding: 8px 24px;
-  border-radius: 24px;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: background 0.2s, color 0.2s;
-  box-shadow: 0 1px 4px rgba(44, 76, 59, 0.08);
-}
-
-  .header-logout-btn:hover {
-    background: var(--secondary-dark);
-    color: var(--primary-hover);
-  }
