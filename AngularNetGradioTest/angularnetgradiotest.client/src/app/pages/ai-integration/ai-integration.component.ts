@@ -50,6 +50,7 @@ export class AIIntegrationComponent {
     setTimeout(() => {
       this.messages.push({ sender: 'bot', text: 'Response to: ' + userMsg });
       this.isLoading = false;
+      this.loadingService.setLoading(false);
       setTimeout(() => this.scrollToBottom(), 50);
     }, 1200);
     setTimeout(() => this.scrollToBottom(), 10);
