@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DragAndDropFilesComponent } from '../../components/drag-and-drop-files/drag-and-drop-files.component';
-
+import { LoadingService } from '../../services/loading.service';
 interface ChatMessage {
   sender: 'user' | 'bot';
   text: string;
@@ -26,8 +26,11 @@ export class AIIntegrationComponent {
 
   @ViewChild('chatHistory') chatHistory!: ElementRef<HTMLDivElement>;
 
+  constructor(private loadingService: LoadingService) { }
+
   sendMessage() {
     if (!this.userInput.trim()) return;
+    this.loadingService.setLoading(true);
     const userMsg = this.userInput.trim();
     this.messages.push({ sender: 'user', text: userMsg });
     this.userInput = '';
@@ -60,8 +63,8 @@ export class AIIntegrationComponent {
     for (let i = 0; i < files.length; i++) {
       if (!this.files.includes(files[i])) {
         this.files.push(files[i]);
-        }
       }
+    }
   }
 
   scrollToBottom() {

@@ -13,12 +13,12 @@
   </div>
 
   <form class="chat-input-row" (ngSubmit)="sendMessage()">
-      <textarea [(ngModel)]="userInput" name="userInput"
-                placeholder="Ask anything..." rows="2"
-                [disabled]="isLoading"
-                class="chat-input">
+    <textarea [(ngModel)]="userInput" name="userInput"
+              placeholder="Ask anything..." rows="2"
+              [disabled]="isLoading"
+              class="chat-input">
     </textarea>
-    <button type="submit" [disabled]="!userInput || isLoading" class="send-btn">Send</button>
+    <button type="submit" [disabled]="!userInput || isLoading">Send</button>
     <button type="button"
             class="icon-btn"
             (click)="toggleFileDropper()"

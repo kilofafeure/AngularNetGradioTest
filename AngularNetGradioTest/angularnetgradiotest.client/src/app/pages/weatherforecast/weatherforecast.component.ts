@@ -20,8 +20,4 @@ export class WeatherForecastComponent implements OnInit {
   ngOnInit(): void {
     this.forecasts$ = this.apiService.getForecasts();
   }
-
-  logout() {
-    this.authService.logout();
-  }
 }
