@@ -155,7 +155,7 @@ p {
   background-color: var(--warning);
   color: var(--black);
 }
-
+/*
 .loading-overlay {
   position: absolute;
   left: 0;
@@ -183,4 +183,4 @@ p {
   100% {
     transform: rotate(360deg);
   }
-}
+}*/

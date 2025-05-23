@@ -1,4 +1,27 @@
 <div class="page-container">
+  <div class="chat-history" #chatHistory>
+    <div [ngClass]="{'user-msg': msg.sender==='user', 'bot-msg': msg.sender==='bot'}">
+      @for (msg of messages) {
+      <div class="msg-bubble">{{ msg.text }}</div>
+      }
+    </div>
+    @if (isLoading) {
+    <div class="bot-msg">
+      <div class="msg-bubble loading">Thinking...</div>
+    </div>
+    }
+  </div>
+
+  <form class="chat-input-row" (ngSubmit)="sendMessage()">
+    <textarea [(ngModel)]="userInput" name="userInput"
+              placeholder="Ask anything..." rows="2"
+              [disabled]="isLoading"
+              class="chat-input"></textarea>
+    <button type="submit" [disabled]="!userInput || isLoading" class="send-btn">Send</button>
+  </form>
+</div>
+
+<!--<div class="page-container">
   <h1>AI Integration</h1>
   <p>This component tests AI integration.</p>
 
@@ -12,9 +35,9 @@
             (click)="showDragAndDrop = !showDragAndDrop"
             class="icon-btn-absolute"
             title="Adjuntar archivos"
-            [disabled]="disabledForm">
+            [disabled]="disabledForm">-->
       <!-- SVG de clip -->
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <!--<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path d="M17.656 6.343a6 6 0 0 1 0 8.485l-6.364 6.364a4 4 0 1 1-5.657-5.657l8.485-8.485a2 2 0 1 1 2.828 2.828l-8.485 8.485"
               stroke="#333"
               stroke-width="2"
@@ -54,4 +77,4 @@
     {{ errorMessage }}
   </div>
   }
-</div>
+</div>-->
