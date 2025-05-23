@@ -12,6 +12,8 @@
   --black: #000000;
   --warning: #f56a6a;
   --disabled: #eddfdf;
+  --border: #eaeaea;
+  --loading-text: #999;
 }
 
 * {

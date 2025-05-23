@@ -1,10 +1,10 @@
 <div class="page-container">
   <div class="chat-history" #chatHistory>
+    @for (msg of messages; track msg) {
     <div [ngClass]="{'user-msg': msg.sender==='user', 'bot-msg': msg.sender==='bot'}">
-      @for (msg of messages) {
       <div class="msg-bubble">{{ msg.text }}</div>
-      }
     </div>
+    }
     @if (isLoading) {
     <div class="bot-msg">
       <div class="msg-bubble loading">Thinking...</div>
